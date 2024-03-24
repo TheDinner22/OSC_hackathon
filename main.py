@@ -8,5 +8,4 @@ def main():
         print(count_objects(raw_image))
 
 if __name__ == "__main__":
-    # main()
-    test()
+    main()

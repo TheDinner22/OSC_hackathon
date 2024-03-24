@@ -2,17 +2,14 @@ import pygame
 import random
 
 # Loads images
-fish1 = pygame.image.load('images/fish1.jpg')
-fish2 = pygame.image.load('images/fish2.jpg')
-fish3 = pygame.image.load('images/fish3.jpg')
+fish1 = pygame.image.load('images/walk1.jpg')
+fish2 = pygame.image.load('images/walk2.jpg')
+fish3 = pygame.image.load('images/walk3.jpg')
 
 # Homogenizes their size
 fish1 = pygame.transform.scale(fish1, (100, 100))
 fish2 = pygame.transform.scale(fish2, (100, 100))
 fish3 = pygame.transform.scale(fish3, (100, 100))
-fish1 = pygame.transform.rotate(fish1, -90)
-fish2 = pygame.transform.rotate(fish2, -90)
-fish3 = pygame.transform.rotate(fish3, -90)
 
 background_color = (255, 123, 255) 
 WIN = pygame.display.set_mode((900, 600)) 
@@ -27,7 +24,7 @@ class Object:
         self.velocity = -1
     
     @staticmethod 
-    def new_object():
+    def new_object(y):
         new_obj = Object()
         
         object_num = random.randint(1,3)
@@ -41,7 +38,7 @@ class Object:
             new_obj.fish = fish3
 
         new_obj.x = 600 - random.randint(1, 40)
-        new_obj.y = object_y
+        new_obj.y = y
         new_obj.velocity = -1* random.randint(1, 3)
         return new_obj
     
@@ -50,7 +47,7 @@ class Object:
         if self.x < 0:
             self.x = 700
             self.velocity = -1*random.randint(1, 3)
-            self.y = random.randint(0,570)
+            #self.y = random.randint(0,570)
             return 1
         return 0
 
@@ -64,7 +61,7 @@ def draw(win, objects):
     pygame.display.update()
 
 running = True
-objects= [Object.new_object(), Object.new_object(), Object.new_object(), Object.new_object(), Object.new_object(), Object.new_object(), Object.new_object()]
+objects= [Object.new_object(50), Object.new_object(150+50), Object.new_object(250+50), Object.new_object(350+50)]
 move_c = 0
 while running: 
 # for loop through the event queue
