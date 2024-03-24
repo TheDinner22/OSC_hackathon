@@ -51,6 +51,8 @@ class Object:
             self.x = 700
             self.velocity = -1*random.randint(1, 3)
             self.y = random.randint(0,570)
+            return 1
+        return 0
 
 def draw(win, objects):
     win.fill(background_color)
@@ -63,11 +65,11 @@ def draw(win, objects):
 
 running = True
 objects= [Object.new_object(), Object.new_object(), Object.new_object(), Object.new_object(), Object.new_object(), Object.new_object(), Object.new_object()]
-
+move_c = 0
 while running: 
 # for loop through the event queue
     for object in objects:
-        object.move()
+        move_c += object.move()
     draw(WIN, objects)
 
     for event in pygame.event.get(): 
@@ -75,3 +77,5 @@ while running:
         # Check for QUIT event       
         if event.type == pygame.QUIT: 
             running = False
+        if event.type == pygame.KEYDOWN:
+            print(move_c)
